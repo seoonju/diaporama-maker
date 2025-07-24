@@ -11,11 +11,13 @@ var isImage = require("../common/isImage");
 var Thumbnail = require("./Thumbnail");
 var fs = require("./fs");
 var portscanner = require('portscanner');
+var helmet = require('helmet'); // Added Helmet middleware
 
 module.exports = function server (diaporama) {
   var app = express();
   var http = Http.Server(app);
 
+  app.use(helmet()); // Disable X-Powered-By header
   app.use(bodyParser.json());
 
   var defer = Q.defer();
